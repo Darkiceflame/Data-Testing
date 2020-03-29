@@ -1,0 +1,67 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:copy_name",
+              "source": "block_entity"
+            },
+            {
+              "function":"set_nbt",
+              "tag":"{EntityTag:{id:\"minecraft:falling_block\",BlockState:{Name:\"minecraft:spawner\"},TileEntityData:{SpawnData:{id:\"minecraft:area_effect_cloud\"}},Time:1},storedEntity:\"po\"}"
+            },
+            {
+              "function": "minecraft:copy_nbt",
+              "source": "block_entity",
+              "ops": [
+                {
+                  "source": "SpawnData.id",
+                  "target": "EntityTag.TileEntityData.SpawnData.id",
+                  "op": "replace"
+                },
+				{
+                  "source": "SpawnPotentials.Entity.id",
+                  "target": "EntityTag.TileEntityData.SpawnPotentials.Entity.id",
+                  "op": "replace"
+                },
+				{
+                  "source": "SpawnData.id",
+                  "target": "storedEntity",
+                  "op": "replace"
+                }
+              ]
+            },
+			{
+              "function":"set_name",
+              "name":{
+                "text":"Spawner",
+                "italic":false
+              }
+            }
+          ],
+          "name": "minecraft:endermite_spawn_egg"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "enchantments": [
+              {
+                "enchantment": "minecraft:silk_touch",
+                "levels": {
+                  "min": 1
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
